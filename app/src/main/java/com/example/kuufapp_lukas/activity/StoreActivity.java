@@ -3,8 +3,12 @@ package com.example.kuufapp_lukas.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kuufapp_lukas.R;
+import com.example.kuufapp_lukas.adapter.ProductAdapter;
 import com.example.kuufapp_lukas.util.HelperData;
 
 import android.content.Intent;
@@ -13,19 +17,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class StoreActivity extends AppCompatActivity {
+public class StoreActivity extends AppCompatActivity implements ProductAdapter.ProductClickListener {
     Toolbar toolbar;
+    private RecyclerView gameList;
+    private ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
         initializeToolbar();
+        setGameList();
+    }
+
+    private void setGameList() {
+        gameList = (RecyclerView) findViewById(R.id.rv_store_games);
+        adapter = new ProductAdapter(HelperData.getInstance().getProducts(), this);
+        gameList.setLayoutManager(new LinearLayoutManager(this));
+        gameList.setItemAnimator(new DefaultItemAnimator());
+        gameList.setAdapter(adapter);
     }
 
     private void initializeToolbar() {
         toolbar = (Toolbar) findViewById(R.id.store_toolbar);
-        toolbar.setTitle("Home");
+        toolbar.setTitle("Game Store");
         setSupportActionBar(toolbar);
     }
 
@@ -66,6 +81,13 @@ public class StoreActivity extends AppCompatActivity {
             intent.setClass(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         }
+        startActivity(intent);
+    }
+
+    @Override
+    public void onProductClicked(int position) {
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra(HelperData.PRODUCT_DATA, HelperData.getInstance().getProducts().get(position));
         startActivity(intent);
     }
 }

@@ -2,6 +2,7 @@ package com.example.kuufapp_lukas.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.kuufapp_lukas.model.Product;
 import com.example.kuufapp_lukas.model.Transaction;
@@ -57,5 +58,23 @@ public class HelperData {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public static String getPriceString(int price){
+        String priceTxt = price + "";
+        Log.d("cekPrice", priceTxt.length() + "");
+        int divide = priceTxt.length() / 3;
+        int module = priceTxt.length() % 3;
+
+        String result = "" + priceTxt.charAt(0);
+        for (int i=1;i<priceTxt.length();i++){
+            if(i == module-1 || (i+1-module) % 3 == 0 && i != priceTxt.length()-1){
+                result += (priceTxt.charAt(i) + ".");
+            }else{
+                result += priceTxt.charAt(i);
+            }
+            Log.d("cekPrice" + i, result);
+        }
+        return result;
     }
 }

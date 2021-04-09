@@ -12,11 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue_1"
+        app:titleTextColor="@color/white"
         android:elevation="4dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_store_games"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </ScrollView>
 

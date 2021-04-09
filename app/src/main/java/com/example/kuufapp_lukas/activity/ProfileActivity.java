@@ -58,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         int year = current.getDate().getYear();
         String date = ((day < 10)? "0" : "") + day + " - " + ((month < 10)? "0" : "") + month + " - " + year;;
         tvDOB.setText(date);
-        String nominal = "Rp. " + current.getWallet();
+        String nominal = "Rp. " + HelperData.getPriceString(current.getWallet());
         tvWallet.setText(nominal);
     }
 

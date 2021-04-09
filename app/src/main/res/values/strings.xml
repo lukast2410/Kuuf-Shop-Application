@@ -40,4 +40,14 @@
     <string name="top_up_1000k">Rp. 1.000.000</string>
     <string name="top_up_not_selected">You have to select the top up nominal!</string>
     <string name="top_up_password_error">Wrong password!</string>
+
+    <string name="product">Product</string>
+    <string name="price">Price</string>
+    <string name="player">5 - 6</string>
+    <string name="buy">Buy Product</string>
+    <string name="not_enough">Not enough money!</string>
+    <string name="ok">OK</string>
+    <string name="please_top_up">Please top up your wallet first!</string>
+    <string name="history">Transaction history</string>
+    <string name="no_history">There is no transaction</string>
 </resources>
